@@ -1,0 +1,57 @@
+
+write a function that removes duplicates from an array
+	- non recursion, do not use filter()
+  - then show how it can be used with filter()
+  - show how it can be solved with recursion
+  
+  input = [7, 9, "hi", 12, "hi", 7, 53]
+  output = [7, 9, "hi", 12, 53]
+  
+  
+  function removeDupes(input) {
+  	let uniqueArray = [...new Set(input);
+  	return uniqueArray;
+  }
+  
+  console.log(removeDupes(input));
+  
+  function removeDupesFilter(input) {
+  	const result = input.filter(function(element, index) {
+    	return input.indexOf(element) === index; //indexOf(input("hi")) == 2
+    })
+  	return result;
+  }
+  
+  console.log(removeDupesFilter(input)); 
+  
+  
+  
+  input = [7, 9, "hi", 12, "hi", 7, 53]
+
+	- if not included anywhere else, to take that element and concatenate to it using recursive function
+	- if included anywhere else (i.e.duplicate), then don't concate, just run my function again
+
+
+	function removeDupesRec(input) {
+  	if(input NaN) {
+    	return ("error");
+  	}  //termination case
+  
+  	if (input.length === 0) {
+    	return [];  //base case
+    } else {
+    	const firstEl = input[0];  
+      const restEl = input.splice(1);  
+      if (restEl.indexOf(firstEl) === -1) {
+      	return [firstEl].concat(removeDupesRec(restEl))
+      } else
+      	{
+        	return removeDupesRec(restEl);
+        }
+    
+    }
+  }
+  
+  console.log(removeDupesRec(input));
+  
+  needed output = [7, 9, "hi", 12, 53]  //  expected output =  [9, 12, "hi", 53]
